@@ -1,3 +1,6 @@
+import { mergeConfig } from "vite";
+import sassDts from "vite-plugin-sass-dts";
+
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -13,6 +16,15 @@ const config = {
   },
   docs: {
     autodocs: "tag",
+  },
+
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      plugins: [sassDts()],
+      css: {
+        module: true,
+      },
+    });
   },
 };
 export default config;

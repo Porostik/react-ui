@@ -1,0 +1,67 @@
+@use "../styles/colors.scss";
+@use "../styles/utils.scss";
+
+@keyframes open {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.root {
+  position: absolute;
+  width: 100%;
+  max-height: calc(300px + var(--footer-height));
+  padding: 10px 20px;
+  border-radius: 20px 20px 0 0;
+  background: colors.$primary;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  bottom: calc(0px - var(--footer-height) + 45px);
+  z-index: 100;
+  animation: open 0.2s ease-in-out;
+
+  &--transition {
+    transition: transform 0.2s linear;
+  }
+
+  &--close {
+    transform: translateY(100%) !important;
+    transition: transform 0.2s linear;
+  }
+
+  .head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+
+    .bullet {
+      width: 100px;
+      height: 6px;
+      border-radius: 10px;
+      background: colors.$secondary;
+      cursor: pointer;
+      transition: opacity 0.2s linear;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .body {
+    overflow: auto;
+
+    @include utils.hideScrollbar;
+  }
+
+  .footer {
+    width: 100%;
+    height: var(--footer-height);
+  }
+}

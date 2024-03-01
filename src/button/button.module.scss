@@ -1,0 +1,18 @@
+@use "../styles/colors.scss";
+@use "../styles/utils.scss";
+
+.btn {
+  background: colors.$primary;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid rgb(209, 209, 209);
+  font-size: 14px;
+  color: colors.$text-color;
+  border-radius: 6px;
+  padding: 5px 20px;
+  transition: box-shadow 0.2s linear;
+
+  @include utils.mouseHover {
+    box-shadow: 2px 2px 4px 0px rgba(34, 60, 80, 0.2);
+  }
+}
