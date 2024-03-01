@@ -1,0 +1,33 @@
+name: Deploy Storybook
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  Build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout if required
+        uses: actions/checkout@v3
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build-storybook
+
+      - name: Upload
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: storybook-static
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v3
+        with:
+          token: ${{ github.token }}
