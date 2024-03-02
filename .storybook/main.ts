@@ -1,3 +1,4 @@
+import path from "path";
 import { mergeConfig } from "vite";
 import sassDts from "vite-plugin-sass-dts";
 
@@ -20,6 +21,7 @@ const config = {
 
   async viteFinal(config) {
     return mergeConfig(config, {
+      cacheDir: path.join(__dirname, "../node_modules/.vite-unique-name"),
       plugins: [sassDts()],
       css: {
         module: true,
