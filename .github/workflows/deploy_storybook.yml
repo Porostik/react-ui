@@ -34,3 +34,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           folder: storybook-static
+          clean: true
+          clean-exclude: |
+            .nojekyll
